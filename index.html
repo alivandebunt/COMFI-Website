@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club of Madrid Foundation Inc. — COMFI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red:    #8B1A1A;
+    --green:  #1C3A2B;
+    --black:  #0D0D0D;
+    --white:  #F7F4EF;
+    --gray:   #9A9790;
+    --cream:  #EDE9E1;
+    --red-light: #B02020;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(247,244,239,0.08);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red-light); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray); font-size: 0.82rem; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--red); color: var(--white);
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--red-light); }
+
+  /* ── HERO ─────────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--green);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 7rem 4rem 5rem;
+    position: relative;
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute; top: 0; right: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--red) 40%, var(--red) 60%, transparent);
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(247,244,239,0.5); margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    line-height: 1.12;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  .hero-title em { color: var(--red-light); font-style: italic; }
+  .hero-desc {
+    font-size: 1rem; line-height: 1.75; color: rgba(247,244,239,0.7);
+    max-width: 28rem; font-weight: 300;
+    margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--red-light); }
+  .btn-outline {
+    border: 1px solid rgba(247,244,239,0.3); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: border-color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--white); }
+
+  .hero-right {
+    background: var(--black);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 7rem 4rem 5rem;
+    position: relative;
+  }
+  .hero-stat-stack { display: flex; flex-direction: column; gap: 2.5rem; }
+  .hero-stat { border-left: 2px solid var(--red); padding-left: 1.5rem; }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem; font-weight: 700; line-height: 1;
+    color: var(--white);
+  }
+  .hero-stat-label {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray); margin-top: 0.4rem;
+  }
+  .hero-badge {
+    position: absolute; bottom: 4rem; right: 3.5rem;
+    background: var(--green); border-radius: 50%;
+    width: 120px; height: 120px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 1rem;
+    border: 1px solid rgba(247,244,239,0.1);
+  }
+  .hero-badge-text {
+    font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(247,244,239,0.6); line-height: 1.4;
+  }
+  .hero-badge-bold {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; color: var(--white); margin-top: 0.2rem;
+  }
+
+  /* ── TICKER ─────────────────────────────────────── */
+  .ticker {
+    background: var(--red); padding: 0.6rem 0; overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: scroll 30s linear infinite;
+  }
+  .ticker-inner span {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(247,244,239,0.9); margin: 0 2.5rem;
+  }
+  .ticker-inner span::before { content: '◆  '; color: rgba(247,244,239,0.4); }
+  @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── MISSION ─────────────────────────────────────── */
+  #mission {
+    padding: 8rem 3rem;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 5rem;
+    align-items: start;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .section-tag {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--red-light); margin-bottom: 1rem;
+  }
+  .section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: var(--white); line-height: 1.3;
+  }
+  .mission-body p {
+    font-size: 1.05rem; line-height: 1.85; color: rgba(247,244,239,0.7);
+    font-weight: 300; margin-bottom: 1.5rem;
+  }
+  .mission-body p:last-child { margin-bottom: 0; }
+  .mission-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; line-height: 1.45; color: var(--white);
+    border-left: 3px solid var(--red); padding-left: 1.5rem;
+    margin-bottom: 2rem; font-style: italic;
+  }
+
+  /* ── DIVIDER ─────────────────────────────────────── */
+  .divider {
+    height: 1px; background: rgba(247,244,239,0.08);
+    margin: 0 3rem;
+  }
+
+  /* ── PROGRAMS ─────────────────────────────────────── */
+  #programs { padding: 8rem 3rem; }
+  .programs-header { max-width: 1200px; margin: 0 auto 4rem; }
+  .programs-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 3rem); margin-top: 0.5rem;
+  }
+  .programs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+    max-width: 1200px; margin: 0 auto;
+    background: rgba(247,244,239,0.08);
+    border: 1px solid rgba(247,244,239,0.08);
+  }
+  .program-card {
+    background: var(--black); padding: 2.5rem;
+    transition: background 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .program-card:hover { background: #111; }
+  .program-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--red); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .program-card:hover::before { transform: scaleX(1); }
+  .program-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; color: rgba(247,244,239,0.07);
+    position: absolute; top: 1.5rem; right: 2rem;
+  }
+  .program-icon {
+    width: 40px; height: 40px; margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(139,26,26,0.15); border-radius: 2px;
+    color: var(--red-light);
+  }
+  .program-icon svg { width: 20px; height: 20px; }
+  .program-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--white);
+  }
+  .program-desc {
+    font-size: 0.88rem; line-height: 1.75; color: var(--gray); font-weight: 300;
+  }
+
+  /* ── EVENTS ─────────────────────────────────────── */
+  #events {
+    padding: 8rem 3rem;
+    background: var(--green);
+  }
+  .events-inner { max-width: 1200px; margin: 0 auto; }
+  .events-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
+  .events-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+  }
+  .events-list { display: flex; flex-direction: column; gap: 0; }
+  .event-row {
+    display: grid; grid-template-columns: 120px 1fr auto;
+    gap: 2rem; align-items: center;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(247,244,239,0.1);
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .event-row:first-child { border-top: 1px solid rgba(247,244,239,0.1); }
+  .event-row:hover { padding-left: 1rem; background: rgba(247,244,239,0.03); }
+  .event-date-block { text-align: center; }
+  .event-month {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--red-light);
+  }
+  .event-day {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; line-height: 1; color: var(--white);
+  }
+  .event-year { font-size: 0.7rem; color: var(--gray); }
+  .event-info {}
+  .event-title { font-size: 1.05rem; color: var(--white); margin-bottom: 0.25rem; font-weight: 500; }
+  .event-location { font-size: 0.82rem; color: var(--gray); }
+  .event-tag {
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid rgba(247,244,239,0.2); color: rgba(247,244,239,0.5);
+    padding: 0.3rem 0.75rem; border-radius: 1px; white-space: nowrap;
+  }
+
+  /* ── DONATE ─────────────────────────────────────── */
+  #donate {
+    padding: 8rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .donate-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    align-items: center;
+  }
+  .donate-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .donate-left h2 em { color: var(--red-light); font-style: italic; }
+  .donate-left p {
+    font-size: 0.95rem; line-height: 1.8; color: var(--gray); font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .tax-note {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--green); background: rgba(28,58,43,0.4);
+    border: 1px solid rgba(28,58,43,0.8); padding: 0.5rem 1rem; border-radius: 2px;
+  }
+  .tax-note::before { content: '✓'; font-weight: 700; }
+  .donate-right {}
+  .donate-amounts {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .amount-btn {
+    border: 1px solid rgba(247,244,239,0.15); background: transparent;
+    color: var(--white); padding: 1rem; text-align: center;
+    font-family: 'Playfair Display', serif; font-size: 1.3rem;
+    cursor: pointer; border-radius: 2px; transition: all 0.2s;
+  }
+  .amount-btn:hover, .amount-btn.active {
+    background: var(--red); border-color: var(--red);
+  }
+  .amount-btn span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,239,0.5); margin-top: 0.2rem; }
+  .donate-input-row { position: relative; margin-bottom: 1rem; }
+  .donate-input-row input {
+    width: 100%; background: rgba(247,244,239,0.05);
+    border: 1px solid rgba(247,244,239,0.15); color: var(--white);
+    padding: 1rem 1rem 1rem 2.5rem; font-size: 1rem; border-radius: 2px;
+    outline: none; font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s;
+  }
+  .donate-input-row input:focus { border-color: var(--red); }
+  .donate-input-row .dollar {
+    position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+    color: var(--gray); font-size: 1rem;
+  }
+  .donate-submit {
+    width: 100%; background: var(--red); color: var(--white);
+    border: none; padding: 1.1rem; font-size: 0.85rem;
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+    border-radius: 2px; transition: background 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .donate-submit:hover { background: var(--red-light); }
+
+  /* ── CONTACT ─────────────────────────────────────── */
+  #contact {
+    padding: 8rem 3rem;
+    background: var(--cream); color: var(--black);
+  }
+  .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+  #contact .section-tag { color: var(--red); }
+  #contact .section-label { color: var(--black); }
+  .contact-body p { font-size: 0.95rem; line-height: 1.8; color: #444; font-weight: 300; margin-bottom: 1.5rem; }
+  .contact-detail { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-item-icon {
+    width: 36px; height: 36px; background: rgba(139,26,26,0.1); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: var(--red);
+  }
+  .contact-item-icon svg { width: 16px; height: 16px; }
+  .contact-item-text { font-size: 0.88rem; line-height: 1.6; color: #333; }
+  .contact-item-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.15rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form input, .contact-form textarea {
+    background: var(--white); border: 1px solid #D8D3CB; color: var(--black);
+    padding: 0.9rem 1rem; font-size: 0.9rem; border-radius: 2px;
+    outline: none; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s;
+    resize: none;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--red); }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: #999; }
+  .contact-form textarea { height: 130px; }
+  .contact-form button {
+    background: var(--red); color: var(--white); border: none;
+    padding: 1rem; font-size: 0.82rem; letter-spacing: 0.12em;
+    text-transform: uppercase; cursor: pointer; border-radius: 2px;
+    transition: background 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .contact-form button:hover { background: var(--red-light); }
+
+  /* ── FOOTER ─────────────────────────────────────── */
+  footer {
+    background: #060606; padding: 3rem;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+    border-top: 1px solid rgba(247,244,239,0.06);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: rgba(247,244,239,0.4);
+    letter-spacing: 0.04em;
+  }
+  .footer-logo span { color: var(--red); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,239,0.3); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(247,244,239,0.7); }
+  .footer-copy { font-size: 0.72rem; color: rgba(247,244,239,0.2); }
+
+  /* ── ANIMATIONS ──────────────────────────────────── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 2rem 3rem; }
+    .hero-right { padding: 3rem 2rem 5rem; }
+    .hero-badge { display: none; }
+    #mission, .donate-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .programs-grid { grid-template-columns: 1fr; }
+    #programs, #events, #donate, #contact { padding: 5rem 1.5rem; }
+    .events-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+    .divider { margin: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">COMFI <span>|</span> Club of Madrid Foundation</a>
+  <ul class="nav-links">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#donate" class="nav-cta">Donate</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Club of Madrid Foundation Inc. — COMFI — 501(c)(3)</p>
+    <h1 class="hero-title">Strengthening<br><em>Democracy</em><br>Around the World</h1>
+    <p class="hero-desc">COMFI is the US-based grant-making arm of Club de Madrid — the world's largest forum of democratic former heads of state and government. We raise funds to advance democracy, inclusive governance, and peaceful transitions of power.</p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn-primary">Support Our Work</a>
+      <a href="#mission" class="btn-outline">Our Mission</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-stack">
+      <div class="hero-stat">
+        <div class="hero-stat-num">130+</div>
+        <div class="hero-stat-label">Former Heads of State & Government</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">74</div>
+        <div class="hero-stat-label">Countries Represented</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">Nobel Peace Prize Laureates</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2001</div>
+        <div class="hero-stat-label">Founded in Madrid, Spain</div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-text">Tax deductible since</div>
+      <div class="hero-badge-bold">Dec. 2005</div>
+      <div class="hero-badge-text" style="margin-top:0.3rem">IRS 501(c)(3)</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>Democracy</span><span>Inclusive Governance</span><span>Peaceful Transitions</span><span>Rule of Law</span><span>Human Rights</span><span>Social Cohesion</span><span>Sustainable Development</span><span>Leadership</span>
+    <span>Democracy</span><span>Inclusive Governance</span><span>Peaceful Transitions</span><span>Rule of Law</span><span>Human Rights</span><span>Social Cohesion</span><span>Sustainable Development</span><span>Leadership</span>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="fade-in">
+    <p class="section-tag">Our Purpose</p>
+    <h2 class="section-label">Why COMFI Exists</h2>
+  </div>
+  <div class="mission-body fade-in">
+    <p class="mission-highlight">"A world where democracy is the rule, not the exception — where leaders govern with accountability, inclusion, and purpose."</p>
+    <p>The Club of Madrid Foundation Inc. (COMFI) was incorporated in 2004 as the US-based, tax-exempt fundraising arm of Club de Madrid. We exist to channel philanthropic support from American donors directly into the charitable and educational activities of Club de Madrid.</p>
+    <p>Club de Madrid — the parent organization — brings together more than 130 distinguished former presidents and prime ministers from over 74 nations. These leaders volunteer their expertise, credibility, and global networks on a pro bono basis to support democratic transitions, resolve political conflicts, and counsel governments navigating critical crossroads.</p>
+    <p>As a non-partisan, international organization, Club de Madrid operates at the highest level of political engagement — peer-to-peer dialogue between current and former world leaders. COMFI makes it possible for US-based donors to be part of that mission with full tax deductibility.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="programs-header fade-in">
+    <p class="section-tag">What We Support</p>
+    <h2>Key Program Areas</h2>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card fade-in">
+      <span class="program-num">01</span>
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+      </div>
+      <h3 class="program-title">Democratic Leadership</h3>
+      <p class="program-desc">Supporting peer-to-peer engagement between former and current heads of state to build and consolidate democratic institutions, constitutional frameworks, and rule of law.</p>
+    </div>
+    <div class="program-card fade-in">
+      <span class="program-num">02</span>
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <h3 class="program-title">Crisis & Post-Crisis Response</h3>
+      <p class="program-desc">Deploying the influence of Club de Madrid members in crisis-affected countries to facilitate political dialogue, support ceasefires, and build the foundations for peace.</p>
+    </div>
+    <div class="program-card fade-in">
+      <span class="program-num">03</span>
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3 class="program-title">Shared Societies</h3>
+      <p class="program-desc">Advancing the Shared Societies Project — promoting social cohesion, inclusion, and policies that help diverse populations live together in peace within democratic frameworks.</p>
+    </div>
+    <div class="program-card fade-in">
+      <span class="program-num">04</span>
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3 class="program-title">Policy Dialogue</h3>
+      <p class="program-desc">Convening annual policy dialogues that bring together members, scholars, and civil society to produce actionable recommendations on issues from inequality to climate governance.</p>
+    </div>
+    <div class="program-card fade-in">
+      <span class="program-num">05</span>
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3 class="program-title">Sustainable Development</h3>
+      <p class="program-desc">Working toward the UN's Sustainable Development Goals, including advocacy on global tax policy, climate action, and equitable economic development for the Global South.</p>
+    </div>
+    <div class="program-card fade-in">
+      <span class="program-num">06</span>
+      <div class="program-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <h3 class="program-title">Education & Research</h3>
+      <p class="program-desc">Funding educational initiatives, publications, and research that document lessons from democratic transitions and make them accessible to governments, scholars, and civil society worldwide.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="events-inner">
+    <div class="events-header fade-in">
+      <div>
+        <p class="section-tag">Calendar</p>
+        <h2>Upcoming Events</h2>
+      </div>
+      <a href="#contact" class="btn-outline">Stay Informed</a>
+    </div>
+    <div class="events-list">
+      <div class="event-row fade-in">
+        <div class="event-date-block">
+          <div class="event-month">May</div>
+          <div class="event-day">14</div>
+          <div class="event-year">2026</div>
+        </div>
+        <div class="event-info">
+          <div class="event-title">Annual Policy Dialogue — Democracy & AI Governance</div>
+          <div class="event-location">New York, NY · In Person & Livestream</div>
+        </div>
+        <span class="event-tag">Policy Forum</span>
+      </div>
+      <div class="event-row fade-in">
+        <div class="event-date-block">
+          <div class="event-month">Jun</div>
+          <div class="event-day">03</div>
+          <div class="event-year">2026</div>
+        </div>
+        <div class="event-info">
+          <div class="event-title">Shared Societies Working Group — Social Cohesion Summit</div>
+          <div class="event-location">Madrid, Spain</div>
+        </div>
+        <span class="event-tag">Summit</span>
+      </div>
+      <div class="event-row fade-in">
+        <div class="event-date-block">
+          <div class="event-month">Sep</div>
+          <div class="event-day">22</div>
+          <div class="event-year">2026</div>
+        </div>
+        <div class="event-info">
+          <div class="event-title">UNGA Side Event — Democratic Leadership in Crisis</div>
+          <div class="event-location">United Nations, New York, NY</div>
+        </div>
+        <span class="event-tag">UN Event</span>
+      </div>
+      <div class="event-row fade-in">
+        <div class="event-date-block">
+          <div class="event-month">Oct</div>
+          <div class="event-day">09</div>
+          <div class="event-year">2026</div>
+        </div>
+        <div class="event-info">
+          <div class="event-title">COMFI Annual General Assembly & Gala</div>
+          <div class="event-location">Washington, D.C.</div>
+        </div>
+        <span class="event-tag">Gala</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section id="donate">
+  <div class="donate-inner">
+    <div class="donate-left fade-in">
+      <p class="section-tag">Make an Impact</p>
+      <h2>Your Gift <em>Funds</em><br>Democracy</h2>
+      <p>COMFI is a US 501(c)(3) organization. Every dollar you give supports the Club de Madrid's charitable and educational mission — peer-to-peer leadership for democracy across the globe.</p>
+      <span class="tax-note">Tax deductible under US law</span>
+    </div>
+    <div class="donate-right fade-in">
+      <div class="donate-amounts">
+        <button class="amount-btn" onclick="setAmount(50)">$50<span>Supporter</span></button>
+        <button class="amount-btn active" onclick="setAmount(250)">$250<span>Advocate</span></button>
+        <button class="amount-btn" onclick="setAmount(1000)">$1,000<span>Champion</span></button>
+        <button class="amount-btn" onclick="setAmount(5000)">$5,000<span>Leader</span></button>
+        <button class="amount-btn" onclick="setAmount(10000)">$10K<span>Founder</span></button>
+        <button class="amount-btn" onclick="focusCustom()">Custom<span>Any amount</span></button>
+      </div>
+      <div class="donate-input-row">
+        <span class="dollar">$</span>
+        <input type="number" id="donateAmount" value="250" min="1" placeholder="Enter amount">
+      </div>
+      <button class="donate-submit" onclick="handleDonate()">Proceed to Secure Donation →</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="fade-in">
+      <p class="section-tag">Get in Touch</p>
+      <h2 class="section-label" style="margin-bottom:1.5rem">Contact COMFI</h2>
+      <div class="contact-body">
+        <p>Whether you're interested in making a gift, learning more about our programs, or exploring partnership opportunities — we'd love to hear from you.</p>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-text">120 Wells Ave, Newton, MA 02459</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-text">info@clubmadridfoundation.org</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Website</div>
+            <div class="contact-item-text">clubmadrid.org</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">EIN</div>
+            <div class="contact-item-text">20-2013301 · 501(c)(3) Tax-Exempt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-in">
+      <form class="contact-form" onsubmit="handleContact(event)">
+        <input type="text" placeholder="Your full name" required>
+        <input type="email" placeholder="Email address" required>
+        <input type="text" placeholder="Subject">
+        <textarea placeholder="How can we help you?"></textarea>
+        <button type="submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">COMFI <span>|</span> Club of Madrid Foundation Inc.</div>
+  <div class="footer-links">
+    <a href="#mission">Mission</a>
+    <a href="#programs">Programs</a>
+    <a href="#events">Events</a>
+    <a href="#donate">Donate</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Club of Madrid Foundation Inc. All rights reserved. EIN 20-2013301.</div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Donate amounts
+  function setAmount(val) {
+    document.getElementById('donateAmount').value = val;
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+  }
+  function focusCustom() {
+    document.getElementById('donateAmount').focus();
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+  }
+  function handleDonate() {
+    const amt = document.getElementById('donateAmount').value;
+    if (!amt || amt < 1) { alert('Please enter a valid donation amount.'); return; }
+    alert('Thank you for your support! You will be redirected to our secure payment portal.\n\nAmount: $' + amt);
+  }
+  function handleContact(e) {
+    e.preventDefault();
+    alert("Thank you for reaching out! A member of our team will be in touch shortly.");
+    e.target.reset();
+  }
+</script>
+</body>
+</html>
