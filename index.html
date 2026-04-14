@@ -439,7 +439,7 @@ footer{background:#0A0A0A;margin-top:0;border-top:1px solid rgba(255,255,255,0.1
           <button class="a-btn on" onclick="setA(250,this)">$250<span>Advocate</span></button>
           <button class="a-btn" onclick="setA(1000,this)">$1,000<span>Champion</span></button>
           <button class="a-btn" onclick="setA(5000,this)">$5,000<span>Leader</span></button>
-          <button class="a-btn" onclick="setA(10000,this)">$10K<span>Founder</span></button>
+          <button class="a-btn" onclick="setA(25000,this)">$25K<span>Founder</span></button>
           <button class="a-btn" onclick="focA(this)">Custom<span>Any amount</span></button>
         </div>
         <div class="in-wrap"><span class="sym">$</span><input type="number" id="damt" value="250" min="1"></div>
@@ -467,7 +467,7 @@ footer{background:#0A0A0A;margin-top:0;border-top:1px solid rgba(255,255,255,0.1
         </div>
       </div>
       <div>
-        <form class="c-form" onsubmit="goContact(event)">
+        <form class="c-form" action="https://formspree.io/f/xgoreqal" method="POST">
           <input type="text" placeholder="Full name" required>
           <input type="email" placeholder="Email address" required>
           <input type="text" placeholder="Subject">
@@ -493,7 +493,6 @@ document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 function setA(v,b){document.getElementById('damt').value=v;document.querySelectorAll('.a-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
 function focA(b){document.getElementById('damt').focus();document.querySelectorAll('.a-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
 function goDonate(){const v=document.getElementById('damt').value;if(!v||v<1)return alert('Please enter a valid amount.');alert('Thank you!\nAmount: $'+parseFloat(v).toLocaleString()+'\n\nRedirecting to secure payment portal.')}
-function goContact(e){e.preventDefault();alert('Thank you — we\'ll be in touch soon.');e.target.reset()}
 </script>
 </body>
 </html>
